@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link href="css/styles.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="box" id="heading">
+        <h1>
+            <%= listTitle %>
+        </h1>
+    </div>
+
+    <div class="box">
+        <ul>
+            <% for(var i=0; i<newListItems.length; i++){ %>
+                <div class="item">
+                    <input type="checkbox">
+                    <p>
+                        <%= newListItems[i] %>
+                    </p>
+                </div>
+                <% } %>
+        </ul>
+        <form action="/" method="post">
+            <input type="text" name="item" placeholder="New Item" autocomplete="off">
+            <button type="submit" name="list" value="<%= listTitle %>">+</button>
+        </form>
+
+    </div>
+
+    <footer>
+        <form action="/clear" method="get">
+            <input type="submit" value="Clear All List" class="box">
+        </form>
+        <br>
+        copyright by kartik thakur
+    </footer>
+</body>
+
+</html>
