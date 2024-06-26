@@ -17,22 +17,32 @@
     </div>
 
     <div class="box">
+        
         <ul>
-            <% for(var i=0; i<newListItems.length; i++){ %>
-                <div class="item">
-                    <input type="checkbox">
-                    <p>
-                        <%= newListItems[i] %>
-                    </p>
-                </div>
-                <% } %>
+            <% newListItems.forEach(function(item) { %>
+                
+                    <form action="/edit" method="POST" style="display:inline;">
+                        <input type="hidden" name="list" value="<%= listTitle %>">
+                        <input type="hidden" name="id" value="<%= item.id %>">
+                        <input type="text" name="newTitle" value="<%= item.title %>">
+                        <input type="text" name="newDescription" value="<%= item.description %>">
+                        <input type="date" name="newDueDate" value="<%= item.dueDate %>">
+                        <button type="submit">Edit</button>
+                        <hr/>
+                    </form>
+                
+            <% }) %>
+            
         </ul>
-        <form action="/" method="post">
-            <input type="text" name="item" placeholder="New Item" autocomplete="off">
-            <button type="submit" name="list" value="<%= listTitle %>">+</button>
+        
+        <form action="/" method="POST">
+            <input type="text" name="title" placeholder="Title">
+            <input type="text" name="description" placeholder="Description">
+            <input type="date" name="dueDate">
+            <button type="submit">Add</button>
+            
         </form>
-
-    </div>
+        
 
     <footer>
         <form action="/clear" method="get">
